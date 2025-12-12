@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Share Flex Message Ready</title>
+    <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+    <style>
+        body {
+            margin: 0;
+            font-family: sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: #eef2ff;
+        }
+        .msg {
+            display: none;
+            padding: 20px 30px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            font-size: 18px;
+            text-align: center;
+            color: #333;
+        }
+        #errorMsg { 
+            color: #d9534f;
+            word-break: break-word;
+            max-width: 80vw;
+        }
+    </style>
+</head>
+<body>
+    <div class="msg" id="loadingMsg">⏳ กำลังเริ่มต้น LIFF และเตรียมการแชร์...</div>
+    <div class="msg" id="successMsg">✅ แชร์ให้เพื่อน ๆ สำเร็จแล้ว</div>
+    <div class="msg" id="errorMsg">❌ เกิดข้อผิดพลาดในการแชร์</div> 
+
+    <script>
+        const flexMessage = {
+            type: "flex",
+            altText: "📚 ห้องสมุด ประชาสัมพันธ์การส่งคลิปวิดีโอแนะนำหนังสือน่าอ่าน",
+            contents: {
+                type: "carousel",
+                contents: [
+                    {
+                        type: "bubble",
+                        body: {
+                            type: "box",
+                            layout: "vertical",
+                            paddingAll: "none",
+                            contents: [
+                                {
+                                    type: "image",
+                                    url: "https://img5.pic.in.th/file/secure-sv1/360x450px-ezgif.com-gif-to-apng-converter.png",
+                                    size: "full",
+                                    animated: true,
+                                    aspectMode: "cover",
+                                    aspectRatio: "2.3:3"
+                                },
+                                {
+                                    type: "button",
+                                    action: {
+                                        type: "uri",
+                                        uri: "http://linecorp.com/",
+                                        label: " "
+                                    },
+                                    position: "absolute",
+                                    offsetTop: "85%",
+                                    offsetStart: "15%",
+                                    offsetEnd: "18%"
+                                }
+                            ],
+                            position: "relative"
+                        }
+                    },
+                    {
+                        type: "bubble",
+                        hero: {
+                            type: "image",
+                            url: "https://storage.naiin.com/system/application/bookstore/resource/product/202306/583056/1000260464_front_XXL.jpg",
+                            size: "full",
+                            aspectMode: "cover",
+                            aspectRatio: "2.9:3",
+                            animated: true
+                        },
+                        body: {
+                            type: "box",
+                            layout: "vertical",
+                            backgroundColor: "#9370DB",
+                            contents: [
+                                {
+                                    type: "text",
+                                    text: "ชื่อหนังสือ",
+                                    weight: "bold",
+                                    size: "md",
+                                    color: "#4A148C",
+                                    wrap: true
+                                },
+                                {
+                                    type: "text",
+                                    text: "แนะนำโดย : ",
+                                    size: "sm",
+                                    color: "#6A1B9A",
+                                    wrap: true
+                                }
+                            ]
+                        }
+                    }
+                ]
+            }
+        };
+
+        function displayMessage(id) {
+            document.querySelectorAll('.msg').forEach(el => el.style.display = 'none');
+            document.getElementById(id).style.display = 'block';
+        }
+
+        async function main() {
+            displayMessage('loadingMsg');
+
+            try {
+                await liff.init({ liffId: "2007236505-Lbr3ooGa" });
+
+                if (!liff.isLoggedIn()) {
+                    liff.login();
+                    return;
+                }
+
+                if (!liff.isApiAvailable("shareTargetPicker")) {
+                    throw new Error("API shareTargetPicker ไม่รองรับ (ต้องเปิดในแอป LINE)");
+                }
+
+                const result = await liff.shareTargetPicker([flexMessage]);
+
+                if (result) {
+                    displayMessage('successMsg');
+                    setTimeout(() => liff.closeWindow(), 2000);
+                } else {
+                    liff.closeWindow();
+                }
+
+            } catch (err) {
+                const errorMsgElement = document.getElementById('errorMsg');
+                errorMsgElement.innerHTML =
+                    `❌ เกิดข้อผิดพลาดในการแชร์:<br>${err.message || 'ไม่ทราบสาเหตุ'}`;
+
+                displayMessage('errorMsg');
+                setTimeout(() => liff.closeWindow(), 5000);
+            }
+        }
+
+        main();
+    </script>
+</body>
+</html>
