@@ -26,7 +26,7 @@
         }
         #errorMsg { 
             color: #d9534f;
-            word-break: break-word; /* เพื่อป้องกันข้อความยาวเกิน */
+            word-break: break-word;
             max-width: 80vw;
         }
     </style>
@@ -37,17 +37,11 @@
     <div class="msg" id="errorMsg">❌ เกิดข้อผิดพลาดในการแชร์</div> 
 
     <script>
-        // กำหนด Flex Message (Carousel Structure ที่ถูกต้องแล้ว)
         const flexMessage = {
             type: "flex",
             altText: "📚 ห้องสมุด ประชาสัมพันธ์การส่งคลิปวิดีโอแนะนำหนังสือน่าอ่าน",
             contents: {
-                type: "carousel", 
-                contents: [
-                    // Bubble 1 เริ่มวาง Code ตรงนี้
-                   {
-  {
-  "type": "carousel",
+                "type": "carousel",
   "contents": [
     {
       "type": "bubble",
@@ -157,9 +151,9 @@
       }
     }
   ]
-};  //อย่าลืม ;  สำคัญ
+}
+        };
 
-        // ฟังก์ชันช่วยในการสลับการแสดงข้อความ
         function displayMessage(id) {
             document.querySelectorAll('.msg').forEach(el => el.style.display = 'none');
             document.getElementById(id).style.display = 'block';
@@ -167,46 +161,37 @@
 
         async function main() {
             displayMessage('loadingMsg');
-            
+
             try {
 
-
-                          // *** 1. สำคัญ: แก้ไข "2007236505-N3aoxxJp" เป็น LIFF ID ที่ถูกต้องของคุณ ***
-
-                await liff.init({ liffId: "2007236505-Lbr3ooGa" });  
+                // ⭐ แก้ LIFF ID ให้ถูกต้องแล้ว ⭐
+                await liff.init({ liffId: "2008680374-fpOP5JmN" });
 
                 if (!liff.isLoggedIn()) {
                     liff.login();
                     return;
                 }
-                
-                // ตรวจสอบความพร้อมของ API แชร์
+
                 if (!liff.isApiAvailable("shareTargetPicker")) {
-                    throw new Error("API shareTargetPicker ไม่รองรับ (โปรดเปิดในแอป LINE)");
+                    throw new Error("API shareTargetPicker ไม่รองรับ (ต้องเปิดในแอป LINE)");
                 }
 
-                document.getElementById("loadingMsg").style.display = "none";
-
-                // เปิดตัวเลือกการแชร์
                 const result = await liff.shareTargetPicker([flexMessage]);
-                
+
                 if (result) {
                     displayMessage('successMsg');
                     setTimeout(() => liff.closeWindow(), 2000);
                 } else {
-                    // ผู้ใช้กด 'ยกเลิก' การแชร์
                     liff.closeWindow();
                 }
 
             } catch (err) {
-                console.error("Share Error:", err);
-                
-                // แสดงข้อความ Error ที่ละเอียดขึ้น
                 const errorMsgElement = document.getElementById('errorMsg');
-                errorMsgElement.innerHTML = `❌ เกิดข้อผิดพลาดในการแชร์: <br> ${err.message || 'ไม่ทราบสาเหตุ'}`;
-                
-                displayMessage('errorMsg'); 
-                setTimeout(() => liff.closeWindow(), 5000); 
+                errorMsgElement.innerHTML =
+                    `❌ เกิดข้อผิดพลาดในการแชร์:<br>${err.message || 'ไม่ทราบสาเหตุ'}`;
+
+                displayMessage('errorMsg');
+                setTimeout(() => liff.closeWindow(), 5000);
             }
         }
 
