@@ -120,7 +120,9 @@
             displayMessage('loadingMsg');
 
             try {
-                await liff.init({ liffId: "2007236505-Lbr3ooGa" });
+
+                // ⭐ แก้ LIFF ID ให้ถูกต้องแล้ว ⭐
+                await liff.init({ liffId: "2008680374-fpOP5JmN" });
 
                 if (!liff.isLoggedIn()) {
                     liff.login();
