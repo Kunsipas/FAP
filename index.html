@@ -32,14 +32,12 @@
     </style>
 </head>
 <body>
-
     <div class="msg" id="loadingMsg">⏳ กำลังเริ่มต้น LIFF และเตรียมการแชร์...</div>
     <div class="msg" id="successMsg">✅ แชร์ให้เพื่อน ๆ สำเร็จแล้ว</div>
     <div class="msg" id="errorMsg">❌ เกิดข้อผิดพลาดในการแชร์</div> 
 
     <script>
-
-        // Flex Message ที่คุณให้มา (แก้รูปแบบให้ถูกต้องแล้ว)
+        // FLEX MESSAGE ตัวใหม่ (3 Bubble)
         const flexMessage = {
             type: "flex",
             altText: "📚 ห้องสมุด ประชาสัมพันธ์การส่งคลิปวิดีโอแนะนำหนังสือน่าอ่าน",
@@ -47,128 +45,131 @@
                 "type": "carousel",
                 "contents": [
                     {
-                        "type": "bubble",
-                        "body": {
-                            "type": "box",
-                            "layout": "vertical",
-                            "paddingAll": "none",
-                            "position": "relative",
-                            "contents": [
-                                {
-                                    "type": "image",
-                                    "url": "https://img5.pic.in.th/file/secure-sv1/-09205aed731b5a66.png",
-                                    "size": "full",
-                                    "aspectMode": "cover",
-                                    "aspectRatio": "2.3:3",
-                                    "animated": true
-                                },
-                                {
-                                    "type": "button",
-                                    "action": {
-                                        "type": "uri",
-                                        "uri": "http://linecorp.com/",
-                                        "label": " "
-                                    },
-                                    "position": "absolute",
-                                    "offsetTop": "85%",
-                                    "offsetStart": "15%",
-                                    "offsetEnd": "18%"
-                                }
-                            ]
-                        }
-                    },
-                    {
-                        "type": "bubble",
-                        "hero": {
+                      "type": "bubble",
+                      "body": {
+                        "type": "box",
+                        "layout": "vertical",
+                        "paddingAll": "none",
+                        "position": "relative",
+                        "contents": [
+                          {
                             "type": "image",
-                            "url": "https://img2.pic.in.th/pic/--1-1-1.png",
+                            "url": "https://img5.pic.in.th/file/secure-sv1/-09205aed731b5a66.png",
                             "size": "full",
                             "aspectMode": "cover",
-                            "aspectRatio": "2.9:3",
+                            "aspectRatio": "2.3:3",
                             "animated": true,
                             "action": {
-                                "type": "uri",
-                                "label": "action",
-                                "uri": "https://youtu.be/uuzxf2NoRNE"
+                              "type": "uri",
+                              "label": "action",
+                              "uri": "https://liff.line.me/2008680374-fpOP5JmN"
                             }
-                        },
-                        "body": {
-                            "type": "box",
-                            "layout": "vertical",
-                            "backgroundColor": "#9370DB",
-                            "contents": [
-                                {
-                                    "type": "text",
-                                    "text": "ชื่อหนังสือ ปัวโรต์ ไขคดีปริศนาคฤหาสน์มรณะ",
-                                    "weight": "bold",
-                                    "size": "md",
-                                    "color": "#4A148C",
-                                    "wrap": true
-                                },
-                                {
-                                    "type": "text",
-                                    "text": "แนะนำโดย : นตท.กิตติวงศ์ ดิษสุวรรณ์ ชั้น 2 ตอน 11",
-                                    "size": "sm",
-                                    "color": "#6A1B9A",
-                                    "wrap": true
-                                }
-                            ]
-                        }
+                          },
+                          {
+                            "type": "button",
+                            "action": {
+                              "type": "uri",
+                              "uri": "http://linecorp.com/",
+                              "label": " "
+                            },
+                            "position": "absolute",
+                            "offsetTop": "85%",
+                            "offsetStart": "15%",
+                            "offsetEnd": "18%"
+                          }
+                        ]
+                      }
                     },
                     {
-                        "type": "bubble",
-                        "hero": {
-                            "type": "image",
-                            "url": "https://img2.pic.in.th/pic/--3671191efb6f33ede.png",
-                            "size": "full",
-                            "aspectMode": "cover",
-                            "aspectRatio": "2.9:3",
-                            "animated": true,
-                            "action": {
-                                "type": "uri",
-                                "label": "action",
-                                "uri": "https://youtube.com/shorts/kFrdr_Vksfw?feature=share"
-                            }
-                        },
-                        "body": {
-                            "type": "box",
-                            "layout": "vertical",
-                            "backgroundColor": "#EDE7F6",
-                            "contents": [
-                                {
-                                    "type": "text",
-                                    "text": "ชื่อหนังสือ สรุปเข้ม VOCAB พร้อมแนวข้อสอบ",
-                                    "weight": "bold",
-                                    "size": "md",
-                                    "color": "#4A148C",
-                                    "wrap": true
-                                },
-                                {
-                                    "type": "text",
-                                    "text": "แนะนำโดย : นตท.กฤตยชญ์ ศรีธรรม ชั้น 2 ตอน 11",
-                                    "size": "sm",
-                                    "color": "#6A1B9A",
-                                    "wrap": true
-                                }
-                            ]
+                      "type": "bubble",
+                      "hero": {
+                        "type": "image",
+                        "url": "https://img2.pic.in.th/pic/--1-1-1.png",
+                        "size": "full",
+                        "aspectMode": "cover",
+                        "aspectRatio": "2.9:3",
+                        "animated": true,
+                        "action": {
+                          "type": "uri",
+                          "label": "action",
+                          "uri": "https://youtu.be/uuzxf2NoRNE"
                         }
+                      },
+                      "body": {
+                        "type": "box",
+                        "layout": "vertical",
+                        "backgroundColor": "#9370DB",
+                        "contents": [
+                          {
+                            "type": "text",
+                            "text": "ชื่อหนังสือ ปัวโรต์ ไขคดีปริศนาคฤหาสน์มรณะ",
+                            "weight": "bold",
+                            "size": "md",
+                            "color": "#4A148C",
+                            "wrap": true
+                          },
+                          {
+                            "type": "text",
+                            "text": "แนะนำโดย : นตท.กิตติวงศ์ ดิษสุวรรณ์ ชั้น 2 ตอน 11",
+                            "size": "sm",
+                            "color": "#6A1B9A",
+                            "wrap": true
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "type": "bubble",
+                      "hero": {
+                        "type": "image",
+                        "url": "https://img2.pic.in.th/pic/--3671191efb6f33ede.png",
+                        "size": "full",
+                        "aspectMode": "cover",
+                        "aspectRatio": "2.9:3",
+                        "animated": true,
+                        "action": {
+                          "type": "uri",
+                          "label": "action",
+                          "uri": "https://youtube.com/shorts/kFrdr_Vksfw?feature=share"
+                        }
+                      },
+                      "body": {
+                        "type": "box",
+                        "layout": "vertical",
+                        "backgroundColor": "#EDE7F6",
+                        "contents": [
+                          {
+                            "type": "text",
+                            "text": "ชื่อหนังสือ สรุปเข้ม VOCAB พร้อมแนวข้อสอบ",
+                            "weight": "bold",
+                            "size": "md",
+                            "color": "#4A148C",
+                            "wrap": true
+                          },
+                          {
+                            "type": "text",
+                            "text": "แนะนำโดย : นตท.กฤตยชญ์ ศรีธรรม ชั้น 2 ตอน 11",
+                            "size": "sm",
+                            "color": "#6A1B9A",
+                            "wrap": true
+                          }
+                        ]
+                      }
                     }
                 ]
             }
         };
 
+        // ฟังก์ชันแสดงผลข้อความ
         function displayMessage(id) {
             document.querySelectorAll('.msg').forEach(el => el.style.display = 'none');
             document.getElementById(id).style.display = 'block';
         }
 
         async function main() {
-
             displayMessage('loadingMsg');
 
             try {
-
-                // ⭐ ใส่ LIFF ID ของคุณตรงนี้ ⭐
                 await liff.init({ liffId: "2008680374-fpOP5JmN" });
 
                 if (!liff.isLoggedIn()) {
@@ -177,7 +178,7 @@
                 }
 
                 if (!liff.isApiAvailable("shareTargetPicker")) {
-                    throw new Error("API shareTargetPicker ไม่รองรับ (โปรดเปิดในแอป LINE)");
+                    throw new Error("API shareTargetPicker ไม่รองรับ (ต้องเปิดในแอป LINE)");
                 }
 
                 const result = await liff.shareTargetPicker([flexMessage]);
@@ -194,7 +195,7 @@
                 errorMsgElement.innerHTML =
                     `❌ เกิดข้อผิดพลาดในการแชร์:<br>${err.message || 'ไม่ทราบสาเหตุ'}`;
 
-                displayMessage('errorMsg'); 
+                displayMessage('errorMsg');
                 setTimeout(() => liff.closeWindow(), 5000);
             }
         }
